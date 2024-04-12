@@ -52,7 +52,7 @@ def test_purchase_book():
     with pytest.raises(ValueError):
         book2.purchase()
 
-    book1 = Book('The wind in the willows', 3, 'Kenneth Grahame', 'Children\'s Literature', 15.00)
+    book1 = Book('The wind in the willows', 3, 'Kenneth Grahame', 'Children\'s Literature', 15)
 
     assert book1.title == 'The wind in the willows'
     assert book1.quantity == 3
@@ -70,9 +70,29 @@ def test_purchase_book():
     assert book1.price == 7.50
 
 def test_class_textbook():
-     book1 = Textbook('The wind in the willows', 3, 'Kenneth Grahame', 'Children\'s Literature', 15.00, 'idk')
+     book1 = Textbook('The wind in the willows', 3, 'Kenneth Grahame', 'Children\'s Literature', 20, 'idk')
 
      assert book1.topic == 'idk'
      assert book1.title == 'The wind in the willows'
 
-     assert str(book1) == 'Title: The wind in the willows, Qty: 3, Author; Kenneth Grahame, Price: $15.00'
+     assert str(book1) == 'Title: The wind in the willows, Qty: 3, Author: Kenneth Grahame, Price: $20.00'
+     book1.set_discount(.50)
+     assert book1.discount == .50
+     book1.get_price()
+
+     assert book1.price == 10
+
+def test_class_comic():
+    book1 = Comic('The wind in the willows', 3, 'Kenneth Grahame', 'Children\'s Literature', 14.99, 'Kenneth Grahame')
+    
+
+    assert book1.publisher == 'Kenneth Grahame'
+    assert book1.title == 'The wind in the willows'
+
+def test_class_comic_method():
+    book1 = Comic('The wind in the willows', 3, 'Kenneth Grahame', 'Children\'s Literature', 50, 'Kenneth Grahame')
+
+    book1.set_discount(.5)
+    book1.get_price()
+
+    assert str(book1) == 'Title: The wind in the willows, Qty: 3, Author: Kenneth Grahame, Price: $25.00'

@@ -17,7 +17,7 @@ class Book:
             self.price = self.price
 
     def __str__(self):
-        return f'Title: {self.title}, Qty: {self.quantity}, Author: {self.author}, Price: ${self.price}'
+        return f'Title: {self.title}, Qty: {self.quantity}, Author: {self.author}, Price: ${self.price:.2f}'
 
     def purchase(self):
         if self.quantity > 0:
@@ -27,11 +27,17 @@ class Book:
             raise ValueError
         
 class Textbook(Book):
-    def __init__(self, title, quantity, author, genre, price, discount, topic):
-        super().__init__(title, quantity, author, genre, price, discount)
-        self.topic = topic
+   def __init__(self,
+                title,
+                quantity,
+                author,
+                genre,
+                price,
+                topic):
+       super().__init__(title, quantity, author, genre, price)
+       self.topic = topic
 
 class Comic(Book):
-    def __init__(self, title, quantity, author, genre, price, discount, publisher):
-        super().__init__(title, quantity, author, genre, price, discount)
+    def __init__(self, title, quantity, author, genre, price, publisher):
+        super().__init__(title, quantity, author, genre, price)
         self.publisher = publisher
