@@ -9,9 +9,11 @@ class AttendanceTracker:
             raise ValueError
 
     def check_in(self, student):
-        self.students[student] = [student, True]
+        # self.students[student] = [student, True]
+        self.students[student][-1]=True
 
     def delete_student(self, student):
         if student in self.students:
-            del self.students[student]
+            # del self.students[student]
+            self.students.pop(student)
         else: raise ValueError
