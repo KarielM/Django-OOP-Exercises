@@ -3,17 +3,23 @@ class AttendanceTracker:
         self.students = {}
 
     def add_student(self, student):
-        if student not in self.students:
-            self.students[student] = [student, False]
-        else:
+        if student in self.students:
             raise ValueError
+        self.students[student] = [student, False]
+        # if student not in self.students:
+        #     self.students[student] = [student, False]
+        # else:
+        #     raise ValueError
 
     def check_in(self, student):
         # self.students[student] = [student, True]
         self.students[student][-1]=True
 
     def delete_student(self, student):
-        if student in self.students:
-            # del self.students[student]
-            self.students.pop(student)
-        else: raise ValueError
+        if student not in self.students:
+            raise ValueError
+        del self.students[student]
+        # if student in self.students:
+        #     # del self.students[student]
+        #     self.students.pop(student)
+        # else: raise ValueError
